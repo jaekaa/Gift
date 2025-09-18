@@ -139,10 +139,34 @@ var ParticlePool = (function () {
  * Putting it all together
  */
 (function (canvas) {
-    var context = canvas.getContext('2d'),
-        particles = new ParticlePool(settings.particles.length),
-        particleRate = settings.particles.length / settings.particles.duration, // particles/sec
-        time;
+        var context = canvas.getContext('2d'),
+                particles = new ParticlePool(settings.particles.length),
+                particleRate = settings.particles.length / settings.particles.duration, // particles/sec
+                time;
+
+            // Heart bubble logic with pop effect
+            function createHeartBubble() {
+                    var bubble = document.createElement('div');
+                    bubble.className = 'heart-bubble';
+                    bubble.style.left = (10 + Math.random() * 80) + '%';
+                    bubble.innerHTML = `
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 29s-13-8.35-13-16.5A7.5 7.5 0 0 1 16 5a7.5 7.5 0 0 1 13 7.5C29 20.65 16 29 16 29z" fill="#ea80b0" stroke="#fff" stroke-width="2"/>
+                        </svg>
+                    `;
+                    document.body.appendChild(bubble);
+                    // After rise animation, trigger pop
+                    setTimeout(function() {
+                        bubble.classList.add('pop');
+                        // Remove after pop animation
+                        setTimeout(function() {
+                            bubble.remove();
+                        }, 400);
+                    }, 2600); // pop after rise (riseBubble is 3s)
+            }
+
+            // Periodically create bubbles
+            setInterval(createHeartBubble, 700);
 
     // get point on heart with -PI <= t <= PI
     function pointOnHeart(t) {

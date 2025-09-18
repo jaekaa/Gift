@@ -92,16 +92,20 @@ h1 {
 }
 
 .envelope {
-    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
     width: 400px;
-    height: 280px;
+    min-height: 280px; /* base height */
     margin: 40px auto;
     position: relative;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s, min-height 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     z-index: 10;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
 }
 
 .envelope:hover {
@@ -129,17 +133,15 @@ h1 {
 }
 
 .envelope-content {
-    position: absolute;
-    bottom: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    padding: 30px;
     background: white;
     border-radius: 10px;
-    padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.5s ease-in-out;
@@ -192,24 +194,6 @@ h1 {
 
 .btn:active {
     transform: translateY(0);
-}
-
-.flowers-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.flower {
-    position: absolute;
-    bottom: 0;
-    animation: bloomUp 4s forwards;
-    font-size: 30px;
-    opacity: 0;
 }
 
 .message {
@@ -301,5 +285,38 @@ h1 {
 
     .heart-shape, .flower {
         font-size: 20px !important;
+    }
+}
+
+
+/* Responsive fixes */
+@media (max-width: 600px) {
+    .envelope {
+        width: 230px;
+        height: 160px;
+    }
+
+    .envelope:before {
+        height: 50%;
+    }
+
+    .letter {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .letter {
+        font-size: 0.7rem;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
     }
 }
