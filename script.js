@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     flowerBtn.addEventListener("click", () => {
-        window.location.href = "flower.html";
+        window.location.href = "heart.html";
     });
 });
 
@@ -40,10 +40,10 @@ function createHearts() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    createHearts();
+    createHearts();s
 
     const flowerBtn = document.getElementById("flowerBtn");
     flowerBtn.addEventListener("click", () => {
-        window.location.href = "flower.html";
+        window.location.href = "heart.html";
     });
 });
